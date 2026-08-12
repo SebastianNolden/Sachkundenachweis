@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lernen – Sachkundenachweis</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Sachkundenachweis</h1>
+  </header>
+
+  <main class="app-main">
+    <p id="status" class="status" role="status"></p>
+
+    <!-- Bleibt hidden, bis Fragen (und nach Möglichkeit der Lernfortschritt)
+         geladen und die erste Frage gerendert ist - so gibt es beim Laden
+         keine leere/kaputte Fragenkarte. Bewusst kein Fortschrittsbalken und
+         kein "Frage X von Y"-Zähler: der Lernmodus hat kein festes Ende. -->
+    <section id="learn-content" class="view" hidden>
+      <div class="card frage-card">
+        <div class="frage-card-kopf">
+          <span id="frage-kategorie" class="frage-kategorie"></span>
+        </div>
+
+        <img id="frage-bild" class="frage-bild" alt="" hidden>
+        <h2 id="frage-text" class="frage-text"></h2>
+
+        <form id="antworten-form" class="antworten-liste"></form>
+
+        <div id="feedback-bereich" class="feedback-bereich" hidden>
+          <p id="feedback-text" class="feedback-text"></p>
+          <p id="feedback-korrekte-antworten" class="feedback-korrekte-antworten" hidden></p>
+        </div>
+      </div>
+
+      <nav class="nav-buttons">
+        <button id="learn-hauptmenu-button" type="button" class="secondary-button">Hauptmenü</button>
+        <button id="pruefen-button" type="button" class="primary-button">Antwort prüfen</button>
+        <button id="naechste-button" type="button" class="primary-button" hidden>Nächste Frage</button>
+      </nav>
+    </section>
+  </main>
+
+  <script src="js/app.js" defer></script>
+  <script src="js/db/capacitorSqliteDriver.js" defer></script>
+  <script src="js/db/database.js" defer></script>
+  <script src="js/repositories/questionRepository.js" defer></script>
+  <script src="js/repositories/attemptRepository.js" defer></script>
+  <script src="js/services/learningService.js" defer></script>
+  <script src="js/learn.js" defer></script>
+</body>
+</html>

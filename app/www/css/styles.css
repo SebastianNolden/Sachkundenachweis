@@ -630,3 +630,84 @@ body {
   margin: 0 0 4px;
   color: var(--color-muted);
 }
+
+/* -------------------------------------------------------------------------
+   6. Lernmodus-Bereich (Meilenstein 5) - reine Wiederverwendung von
+   Fragenkarte/Antwortoptionen/Buttons aus dem Prüfungstest, keine neue
+   Design-Sprache.
+   ------------------------------------------------------------------------- */
+
+/* Browser überschreiben eine [hidden]-Sichtbarkeit mit jeder eigenen
+   display-Regel gleichen Ursprungs (Autor schlägt UA-Stylesheet immer,
+   unabhängig von Spezifität - siehe MDN "hidden attribute"). .primary-
+   button/.secondary-button setzen bereits display:block, wodurch ein rein
+   über [hidden] ausgeblendeter Button (z. B. beim Umschalten zwischen
+   "Antwort prüfen" und "Nächste Frage") ohne diese Regel sichtbar bliebe.
+   Betrifft nur neu eingeführte Elemente dieses Meilensteins. */
+.primary-button[hidden],
+.secondary-button[hidden],
+.view[hidden] {
+  display: none;
+}
+
+.feedback-bereich {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  margin: 4px 0;
+}
+
+.feedback-bereich--richtig {
+  background: var(--color-correct-bg);
+}
+
+.feedback-bereich--falsch {
+  background: var(--color-wrong-bg);
+}
+
+.feedback-text {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.feedback-bereich--richtig .feedback-text {
+  color: var(--color-correct);
+}
+
+.feedback-bereich--falsch .feedback-text {
+  color: var(--color-wrong);
+}
+
+.feedback-korrekte-antworten {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+/* Nach dem Prüfen: Antwortkarten farblich auswerten (siehe learn.js) und
+   nicht mehr interaktiv. Höhere Spezifität über die #antworten-form-ID,
+   damit dies zuverlässig die bestehenden Auswahl-Regeln (:has(input:checked))
+   überschreibt, unabhängig von deren Deklarationsreihenfolge. */
+#antworten-form .antwort-option.antwort-option--richtig {
+  border-color: var(--color-correct);
+  background: var(--color-correct-bg);
+}
+
+#antworten-form .antwort-option.antwort-option--richtig .antwort-box {
+  border-color: var(--color-correct);
+  background: var(--color-correct);
+}
+
+#antworten-form .antwort-option.antwort-option--falsch {
+  border-color: var(--color-wrong);
+  background: var(--color-wrong-bg);
+}
+
+#antworten-form .antwort-option.antwort-option--falsch .antwort-box {
+  border-color: var(--color-wrong);
+  background: var(--color-wrong);
+}
+
+.antwort-option:has(input:disabled) {
+  cursor: default;
+}

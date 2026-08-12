@@ -242,12 +242,113 @@
     };
   }
 
+  // ---------------------------------------------------------------------
+  // Lernmodus (Meilenstein 5): gewichtete Auswahl der nächsten Frage.
+  // Weiterhin AUSSCHLIESSLICH reine Funktionen - kein DOM, kein fetch,
+  // kein SQLite. Session-Zustand (gesperrte Fragen, aktuelle Frage, ...)
+  // lebt bewusst in learn.js, nicht hier (siehe dortiger Dateikopf).
+  // ---------------------------------------------------------------------
+
+  // Basis-Gewicht je Lernstatus - bestimmt die relative Auswahl-
+  // wahrscheinlichkeit einer Frage, NICHT einen garantierten Anteil am
+  // Ergebnis (bei z. B. überwiegend GELERNTEN Fragen kann die aggregierte
+  // Trefferquote trotz niedrigem Einzelgewicht hoch bleiben, da es davon
+  // schlicht die meisten gibt - das ist gewolltes Verhalten).
+  var AUSWAHL_GEWICHTE = {};
+  AUSWAHL_GEWICHTE[STATUS.NEU] = 5;
+  AUSWAHL_GEWICHTE[STATUS.ANGEFANGEN] = 4;
+  AUSWAHL_GEWICHTE[STATUS.UNSICHER] = 6;
+  AUSWAHL_GEWICHTE[STATUS.FESTIGUNG] = 2;
+  AUSWAHL_GEWICHTE[STATUS.GELERNT] = 1;
+
+  // Zusätzliche, rein sitzungsinterne Dämpfung: eine Frage, die HEUTE schon
+  // erfolgreich beantwortet wurde, bleibt im Pool (kein Ausschluss), wird
+  // aber deutlich seltener erneut gezogen. Wirkt sich NICHT auf den
+  // langfristigen Status aus (siehe berechneStatus/lokalerTagKey) - reiner
+  // Auswahl-Faktor für den Lernmodus.
+  var TAGESDAEMPFUNG_FAKTOR = 0.2;
+
+  // Ermittelt, ob eine Frage HEUTE (lokaler Kalendertag) bereits mit ihrer
+  // zeitlich letzten Antwort erfolgreich beantwortet wurde. Eine heute
+  // FALSCH beantwortete Frage (letzteAntwort !== letzteRichtigeAntwort)
+  // liefert hier bewusst false - sie ist UNSICHER und soll KEINE Dämpfung
+  // erhalten (siehe Auftrag Abschnitt 14/15).
+  function istHeuteBereitsErfolgreichBehandelt(fortschritt, heuteKey) {
+    return !!fortschritt.letzteAntwort
+      && lokalerTagKey(fortschritt.letzteAntwort) === heuteKey
+      && fortschritt.letzteAntwort === fortschritt.letzteRichtigeAntwort;
+  }
+
+  // Effektives Auswahlgewicht einer Frage für den Lernmodus: Basisgewicht
+  // ihres Status, gedämpft, falls sie heute schon erfolgreich beantwortet
+  // wurde. GELERNT (Basisgewicht 1) wird durch die Dämpfung nie 0
+  // (1 * 0.2 = 0.2), bleibt also immer auswählbar.
+  function effektivesGewicht(fortschritt, heuteKey) {
+    var basisGewicht = AUSWAHL_GEWICHTE[fortschritt.status] || 0;
+    if (istHeuteBereitsErfolgreichBehandelt(fortschritt, heuteKey)) {
+      return basisGewicht * TAGESDAEMPFUNG_FAKTOR;
+    }
+    return basisGewicht;
+  }
+
+  // Gewichtete Zufallsauswahl der nächsten Lernfrage (klassisches
+  // "Roulette-Wheel"-Verfahren, keine externe Library). "fragenFortschritt"
+  // ist das Ergebnis von berechneFragenFortschritt(), "gesperrteFragenIds"
+  // die aktuelle 5er-Sperrliste aus dem Session-State, "heuteKey" der
+  // lokale Tages-Key von "jetzt" (z. B. lokalerTagKey(new Date().toISOString())) -
+  // wird bewusst als Parameter übergeben statt intern "new Date()" zu
+  // verwenden, damit die Funktion deterministisch testbar bleibt.
+  //
+  // Liefert die questionId der gewählten Frage, oder null, wenn
+  // "fragenFortschritt" komplett leer ist (kein Fragenkatalog vorhanden -
+  // wird von learn.js bereits vorher als harter Fehler behandelt).
+  //
+  // Defensiv: sollte die Sperrliste ausnahmsweise ALLE Kandidaten
+  // ausschließen, wird sie für diese eine Auswahl ignoriert - es gibt
+  // niemals eine Endlosschleife oder eine Auswahl ohne Ergebnis.
+  function waehleNaechsteFrage(fragenFortschritt, gesperrteFragenIds, heuteKey) {
+    var alle = fragenFortschritt || [];
+    if (alle.length === 0) return null;
+
+    var gesperrt = gesperrteFragenIds || [];
+    var kandidaten = alle.filter(function (f) { return gesperrt.indexOf(f.questionId) === -1; });
+    if (kandidaten.length === 0) {
+      kandidaten = alle;
+    }
+
+    var gewichte = kandidaten.map(function (f) { return effektivesGewicht(f, heuteKey); });
+    var gesamtgewicht = gewichte.reduce(function (summe, g) { return summe + g; }, 0);
+
+    if (gesamtgewicht <= 0) {
+      // Sollte praktisch nie vorkommen (GELERNT hat nie Gewicht 0), defensiv
+      // trotzdem eine gleichverteilte Auswahl statt eines Fehlers.
+      return kandidaten[Math.floor(Math.random() * kandidaten.length)].questionId;
+    }
+
+    var zufallswert = Math.random() * gesamtgewicht;
+    var kumuliert = 0;
+    for (var i = 0; i < kandidaten.length; i += 1) {
+      kumuliert += gewichte[i];
+      if (zufallswert < kumuliert) {
+        return kandidaten[i].questionId;
+      }
+    }
+    // Rundungsfall (zufallswert minimal unter gesamtgewicht) - letzten
+    // Kandidaten nehmen statt undefined zurückzugeben.
+    return kandidaten[kandidaten.length - 1].questionId;
+  }
+
   window.LearningService = {
     STATUS: STATUS,
+    AUSWAHL_GEWICHTE: AUSWAHL_GEWICHTE,
+    TAGESDAEMPFUNG_FAKTOR: TAGESDAEMPFUNG_FAKTOR,
     lokalerTagKey: lokalerTagKey,
     berechneStatus: berechneStatus,
     berechneFragenFortschritt: berechneFragenFortschritt,
     berechneKategorieFortschritt: berechneKategorieFortschritt,
     berechneGesamtstatistik: berechneGesamtstatistik,
+    istHeuteBereitsErfolgreichBehandelt: istHeuteBereitsErfolgreichBehandelt,
+    effektivesGewicht: effektivesGewicht,
+    waehleNaechsteFrage: waehleNaechsteFrage,
   };
 })();

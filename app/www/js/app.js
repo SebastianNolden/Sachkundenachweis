@@ -20,6 +20,7 @@
     test: 'test.html',
     result: 'result.html',
     progress: 'progress.html',
+    learn: 'learn.html',
   };
 
   function geheZu(seite) {
@@ -80,6 +81,13 @@
   if (fortschrittButton) {
     fortschrittButton.addEventListener('click', function () {
       geheZu(SEITEN.progress);
+    });
+  }
+
+  var lernenButton = document.getElementById('lernen-button');
+  if (lernenButton) {
+    lernenButton.addEventListener('click', function () {
+      geheZu(SEITEN.learn);
     });
   }
 })();
