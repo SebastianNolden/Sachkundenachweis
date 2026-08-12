@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fortschritt – Sachkundenachweis</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Sachkundenachweis</h1>
+  </header>
+
+  <main class="app-main">
+    <p id="status" class="status" role="status"></p>
+
+    <!-- Bleibt hidden, bis Fragen und Attempts geladen und der Fortschritt
+         berechnet ist - so gibt es beim Laden keine leere/kaputte Ansicht. -->
+    <section id="progress-content" class="view" hidden>
+      <div class="card gesamtfortschritt-card">
+        <h2 class="fortschritt-heading">Gesamtfortschritt</h2>
+
+        <p id="gesamt-anzahl-gelernt" class="gesamtfortschritt-zahl"></p>
+
+        <div class="fortschritt-leiste" aria-hidden="true">
+          <div id="gesamt-fortschritt-balken" class="fortschritt-balken"></div>
+        </div>
+
+        <div class="lernstatus-verteilung">
+          <div class="lernstatus-eintrag lernstatus-eintrag--gelernt">
+            <span id="gesamt-gelernt-wert" class="lernstatus-wert"></span>
+            <span class="lernstatus-label">gelernt</span>
+          </div>
+          <div class="lernstatus-eintrag lernstatus-eintrag--festigung">
+            <span id="gesamt-festigung-wert" class="lernstatus-wert"></span>
+            <span class="lernstatus-label">Festigung</span>
+          </div>
+          <div class="lernstatus-eintrag lernstatus-eintrag--angefangen">
+            <span id="gesamt-angefangen-wert" class="lernstatus-wert"></span>
+            <span class="lernstatus-label">angefangen</span>
+          </div>
+          <div class="lernstatus-eintrag lernstatus-eintrag--unsicher">
+            <span id="gesamt-unsicher-wert" class="lernstatus-wert"></span>
+            <span class="lernstatus-label">unsicher</span>
+          </div>
+          <div class="lernstatus-eintrag lernstatus-eintrag--neu">
+            <span id="gesamt-neu-wert" class="lernstatus-wert"></span>
+            <span class="lernstatus-label">neu</span>
+          </div>
+        </div>
+
+        <p id="gesamt-details" class="fortschritt-details"></p>
+      </div>
+
+      <section class="kategorien-sektion">
+        <h2 class="fortschritt-heading">Kategorien</h2>
+        <div id="kategorien-liste" class="kategorien-liste"></div>
+      </section>
+
+      <section class="fragen-sektion">
+        <h2 class="fortschritt-heading">Fragen</h2>
+        <div id="fragen-liste" class="fragen-liste"></div>
+      </section>
+
+      <button id="progress-hauptmenu-button" type="button" class="secondary-button">Hauptmenü</button>
+    </section>
+  </main>
+
+  <script src="js/app.js" defer></script>
+  <script src="js/db/capacitorSqliteDriver.js" defer></script>
+  <script src="js/db/database.js" defer></script>
+  <script src="js/repositories/questionRepository.js" defer></script>
+  <script src="js/repositories/attemptRepository.js" defer></script>
+  <script src="js/services/learningService.js" defer></script>
+  <script src="js/progress.js" defer></script>
+</body>
+</html>

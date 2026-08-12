@@ -422,3 +422,211 @@ body {
   color: var(--color-correct);
   margin-bottom: 0;
 }
+
+/* -------------------------------------------------------------------------
+   5. Fortschritts-Bereich (Meilenstein 4) - reine Wiederverwendung
+   bestehender Bausteine (Karten, Fortschrittsbalken, Farb-Variablen),
+   keine neue Design-Sprache.
+   ------------------------------------------------------------------------- */
+
+.fortschritt-heading {
+  margin: 4px 0 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.gesamtfortschritt-card {
+  text-align: center;
+}
+
+.gesamtfortschritt-zahl {
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.lernstatus-verteilung {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 16px 0 0;
+}
+
+.lernstatus-eintrag {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+}
+
+.lernstatus-wert {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.lernstatus-label {
+  font-size: 0.66rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.lernstatus-eintrag--gelernt .lernstatus-wert {
+  color: var(--color-correct);
+}
+
+.lernstatus-eintrag--unsicher .lernstatus-wert {
+  color: var(--color-wrong);
+}
+
+.lernstatus-eintrag--festigung .lernstatus-wert,
+.lernstatus-eintrag--angefangen .lernstatus-wert {
+  color: var(--color-primary);
+}
+
+.fortschritt-details {
+  margin: 16px 0 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.kategorien-sektion,
+.fragen-sektion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kategorien-liste,
+.fragen-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kategorie-karte {
+  padding: 16px;
+}
+
+.kategorie-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.kategorie-name {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.kategorie-anteil {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.kategorie-prozent {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+/* Status-Badge: wiederverwendet exakt die Farbpaare, die bereits für
+   Ergebnis-Statistiken (richtig/falsch) und den Primärbutton gelten. */
+.status-badge {
+  display: inline-block;
+  flex-shrink: 0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.status-badge--neu {
+  background: var(--color-surface-alt);
+  color: var(--color-muted);
+}
+
+.status-badge--angefangen {
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
+}
+
+.status-badge--festigung {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.status-badge--gelernt {
+  background: var(--color-correct-bg);
+  color: var(--color-correct);
+}
+
+.status-badge--unsicher {
+  background: var(--color-wrong-bg);
+  color: var(--color-wrong);
+}
+
+.frage-eintrag {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-alt);
+  overflow: hidden;
+}
+
+.frage-eintrag summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.frage-eintrag summary::-webkit-details-marker {
+  display: none;
+}
+
+.frage-eintrag-nummer {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.frage-eintrag-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.92rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.frage-eintrag-details {
+  margin: 0;
+  padding: 0 14px 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 8px;
+  font-size: 0.85rem;
+}
+
+.frage-eintrag-details dt {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.frage-eintrag-details dd {
+  margin: 0 0 4px;
+  color: var(--color-muted);
+}

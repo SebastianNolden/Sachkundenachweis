@@ -61,9 +61,23 @@
     return zeilen.map(zeileZuAttempt);
   }
 
+  // Lädt ALLE question_attempts in einem einzigen Zugriff (keine 197
+  // Einzelabfragen je Frage) - Grundlage für die Lernfortschrittsberechnung
+  // (siehe LearningService), die anschließend rein in JavaScript nach
+  // question_id gruppiert und ausgewertet wird.
+  async function getAllAttempts() {
+    var db = await Database.getConnection();
+    var zeilen = await db.query(
+      'SELECT * FROM question_attempts ORDER BY question_id ASC, answered_at ASC, id ASC',
+      []
+    );
+    return zeilen.map(zeileZuAttempt);
+  }
+
   window.AttemptRepository = {
     createAttempt: createAttempt,
     getAttemptsForQuestion: getAttemptsForQuestion,
     getAttemptsForTestSession: getAttemptsForTestSession,
+    getAllAttempts: getAllAttempts,
   };
 })();

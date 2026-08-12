@@ -19,6 +19,7 @@
     menu: 'index.html',
     test: 'test.html',
     result: 'result.html',
+    progress: 'progress.html',
   };
 
   function geheZu(seite) {
@@ -64,13 +65,21 @@
     setStatus: setStatus,
   };
 
-  // Menüseite: Klick auf "Prüfungstest starten". Das Element existiert nur
-  // auf index.html - auf den anderen Seiten ist app.js zwar mitgeladen
-  // (gemeinsame Basis), findet den Button dort aber einfach nicht.
+  // Menüseite: Klick auf "Prüfungstest starten" bzw. "Fortschritt". Die
+  // Elemente existieren nur auf index.html - auf den anderen Seiten ist
+  // app.js zwar mitgeladen (gemeinsame Basis), findet die Buttons dort aber
+  // einfach nicht.
   var startButton = document.getElementById('start-button');
   if (startButton) {
     startButton.addEventListener('click', function () {
       geheZu(SEITEN.test);
+    });
+  }
+
+  var fortschrittButton = document.getElementById('fortschritt-button');
+  if (fortschrittButton) {
+    fortschrittButton.addEventListener('click', function () {
+      geheZu(SEITEN.progress);
     });
   }
 })();
