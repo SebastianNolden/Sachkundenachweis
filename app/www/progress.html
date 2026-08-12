@@ -17,6 +17,12 @@
     <!-- Bleibt hidden, bis Fragen und Attempts geladen und der Fortschritt
          berechnet ist - so gibt es beim Laden keine leere/kaputte Ansicht. -->
     <section id="progress-content" class="view" hidden>
+      <!-- Zusätzlich zum Hauptmenü-Button am Seitenende (siehe unten): bei
+           einer langen Fragenübersicht soll man nicht erst bis zum Ende
+           scrollen müssen, um zurück ins Hauptmenü zu kommen. Gleiches
+           Button-Design, kein neuer Navigationsstil. -->
+      <button id="progress-hauptmenu-button-oben" type="button" class="secondary-button">Hauptmenü</button>
+
       <div class="card gesamtfortschritt-card">
         <h2 class="fortschritt-heading">Gesamtfortschritt</h2>
 
@@ -64,6 +70,10 @@
 
       <button id="progress-hauptmenu-button" type="button" class="secondary-button">Hauptmenü</button>
     </section>
+
+    <!-- Floating-Button: erscheint erst nach etwas Scrollen (siehe progress.js),
+         bringt per Klick direkt zurück an den Seitenanfang. -->
+    <button id="nach-oben-button" type="button" class="nach-oben-button" hidden aria-label="Nach oben">↑</button>
   </main>
 
   <script src="js/app.js" defer></script>

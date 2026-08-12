@@ -163,6 +163,11 @@
     speichereAktuelleAuswahl();
     session.index -= 1;
     renderAktuelleFrage();
+    // Bei langen Fragen (viele Antworten) sonst mitten in der vorherigen
+    // Scrollposition landend - beim tatsächlichen Fragewechsel soll der
+    // Nutzer sofort wieder am Anfang der neuen Frage stehen. Bewusst kein
+    // "smooth" Scrollen hier (sofortige Positionierung, keine Animation).
+    window.scrollTo(0, 0);
   }
 
   function gehWeiterOderAbschliessen() {
@@ -172,6 +177,7 @@
     if (session.index < session.fragen.length - 1) {
       session.index += 1;
       renderAktuelleFrage();
+      window.scrollTo(0, 0);
     } else {
       schliesseTestAb();
     }
@@ -211,6 +217,7 @@
 
       return {
         frageId: frage.id,
+        nummer: frage.nummer,
         fragetext: frage.fragetext,
         kategorieId: frage.kategorieId,
         bild: frage.bild || null,

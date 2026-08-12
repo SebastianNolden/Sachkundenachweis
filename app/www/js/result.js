@@ -31,11 +31,47 @@
     }
   }
 
-  function kennungenZuTexten(antworten, kennungen) {
-    return kennungen.map(function (kennung) {
-      var antwort = antworten.filter(function (a) { return a.kennung === kennung; })[0];
-      return antwort ? antwort.text : kennung;
-    });
+  // Liefert die Antworttexte einer Frage in der Reihenfolge, in der sie im
+  // Fragenkatalog stehen (frageErgebnis.antworten, unverändert aus
+  // content.json übernommen) und dabei jeweils nur, ob sie in "kennungen"
+  // enthalten sind - so ist die Reihenfolge unabhängig von Klickreihenfolge
+  // bzw. der Reihenfolge korrekter Kennungen stets nachvollziehbar (A, B, C, D).
+  function nachvollziehbareTexte(antworten, kennungen) {
+    return antworten
+      .filter(function (a) { return kennungen.indexOf(a.kennung) !== -1; })
+      .map(function (a) { return a.text; });
+  }
+
+  // Baut eine Liste einzelner Antwort-Einträge (kein zusammengeklebter
+  // Fließtext) für eine Antwortgruppe ("Meine Antwort" bzw. "Richtige
+  // Antwort"). Bei leerer Auswahl wird stattdessen ein einzelner,
+  // verständlicher Hinweistext angezeigt.
+  function erzeugeAntwortgruppe(titel, texte, varianteKlasse) {
+    var gruppe = document.createElement('div');
+    gruppe.className = 'falsche-frage-antwortgruppe ' + varianteKlasse;
+
+    var titelEl = document.createElement('p');
+    titelEl.className = 'falsche-frage-antwortgruppe-titel';
+    titelEl.textContent = titel;
+    gruppe.appendChild(titelEl);
+
+    if (texte.length === 0) {
+      var keineAuswahl = document.createElement('p');
+      keineAuswahl.className = 'falsche-frage-keine-auswahl';
+      keineAuswahl.textContent = 'Keine Antwort ausgewählt';
+      gruppe.appendChild(keineAuswahl);
+    } else {
+      var liste = document.createElement('ul');
+      liste.className = 'falsche-frage-antwortliste';
+      texte.forEach(function (text) {
+        var eintrag = document.createElement('li');
+        eintrag.textContent = text;
+        liste.appendChild(eintrag);
+      });
+      gruppe.appendChild(liste);
+    }
+
+    return gruppe;
   }
 
   function erzeugeFalscheFrageKarte(frageErgebnis) {
@@ -48,6 +84,12 @@
     kategorie.className = 'frage-kategorie';
     kategorie.textContent = 'Kategorie ' + frageErgebnis.kategorieId;
     kopf.appendChild(kategorie);
+    if (frageErgebnis.nummer) {
+      var nummer = document.createElement('span');
+      nummer.className = 'frage-zaehler';
+      nummer.textContent = 'Frage ' + frageErgebnis.nummer;
+      kopf.appendChild(nummer);
+    }
     karte.appendChild(kopf);
 
     if (frageErgebnis.bild) {
@@ -63,17 +105,11 @@
     text.textContent = frageErgebnis.fragetext;
     karte.appendChild(text);
 
-    var deineTexte = kennungenZuTexten(frageErgebnis.antworten, frageErgebnis.gewaehlteKennungen);
-    var deineAntwort = document.createElement('p');
-    deineAntwort.className = 'falsche-frage-antwort falsche-frage-antwort--gewaehlt';
-    deineAntwort.textContent = 'Deine Antwort: ' + (deineTexte.length ? deineTexte.join('; ') : 'keine Antwort ausgewählt');
-    karte.appendChild(deineAntwort);
+    var deineTexte = nachvollziehbareTexte(frageErgebnis.antworten, frageErgebnis.gewaehlteKennungen);
+    karte.appendChild(erzeugeAntwortgruppe('Meine Antwort:', deineTexte, 'falsche-frage-antwortgruppe--gewaehlt'));
 
-    var korrekteTexte = kennungenZuTexten(frageErgebnis.antworten, frageErgebnis.korrekteKennungen);
-    var korrekteAntwort = document.createElement('p');
-    korrekteAntwort.className = 'falsche-frage-antwort falsche-frage-antwort--korrekt';
-    korrekteAntwort.textContent = 'Richtige Antwort: ' + korrekteTexte.join('; ');
-    karte.appendChild(korrekteAntwort);
+    var korrekteTexte = nachvollziehbareTexte(frageErgebnis.antworten, frageErgebnis.korrekteKennungen);
+    karte.appendChild(erzeugeAntwortgruppe('Richtige Antwort:', korrekteTexte, 'falsche-frage-antwortgruppe--korrekt'));
 
     return karte;
   }

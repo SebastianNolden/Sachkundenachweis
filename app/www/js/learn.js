@@ -17,9 +17,6 @@
   var bildEl = document.getElementById('frage-bild');
   var textEl = document.getElementById('frage-text');
   var formEl = document.getElementById('antworten-form');
-  var feedbackBereichEl = document.getElementById('feedback-bereich');
-  var feedbackTextEl = document.getElementById('feedback-text');
-  var feedbackKorrekteAntwortenEl = document.getElementById('feedback-korrekte-antworten');
   var pruefenButton = document.getElementById('pruefen-button');
   var naechsteButton = document.getElementById('naechste-button');
   var hauptmenuButton = document.getElementById('learn-hauptmenu-button');
@@ -168,10 +165,6 @@
       session.antwortElemente.push({ kennung: antwort.kennung, text: antwort.text, label: wrapper, input: input });
     });
 
-    feedbackBereichEl.hidden = true;
-    feedbackBereichEl.className = 'feedback-bereich';
-    feedbackKorrekteAntwortenEl.hidden = true;
-
     pruefenButton.hidden = false;
     naechsteButton.hidden = true;
   }
@@ -200,23 +193,6 @@
       // styles.css für die passende Cursor-Anpassung).
       eintrag.input.disabled = true;
     });
-  }
-
-  function zeigeFeedback(istRichtig, korrekt) {
-    feedbackBereichEl.hidden = false;
-    feedbackBereichEl.className = 'feedback-bereich ' + (istRichtig ? 'feedback-bereich--richtig' : 'feedback-bereich--falsch');
-    feedbackTextEl.textContent = istRichtig ? 'Richtig!' : 'Nicht richtig.';
-
-    if (istRichtig) {
-      feedbackKorrekteAntwortenEl.hidden = true;
-    } else {
-      var korrekteTexte = korrekt.map(function (kennung) {
-        var eintrag = session.antwortElemente.filter(function (e) { return e.kennung === kennung; })[0];
-        return eintrag ? eintrag.text : kennung;
-      });
-      feedbackKorrekteAntwortenEl.textContent = 'Richtige Antwort: ' + korrekteTexte.join('; ');
-      feedbackKorrekteAntwortenEl.hidden = false;
-    }
   }
 
   // Ergänzt den neuen Attempt lokal (statt eines vollen SQLite-Reloads),
@@ -271,8 +247,10 @@
     // jeweils falsch, keine Teilpunkte.
     var istRichtig = App.kennungsMengenGleich(gewaehlt, korrekt);
 
+    // Kein zusätzlicher "Richtig"/"Falsch"-Text mehr - die farbliche
+    // Markierung der Antwortoptionen (siehe markiereAntwortoptionen) ist die
+    // alleinige Rückmeldung.
     markiereAntwortoptionen(gewaehlt, korrekt);
-    zeigeFeedback(istRichtig, korrekt);
 
     session.auswahlGeprueft = true;
     pruefenButton.hidden = true;
@@ -341,8 +319,18 @@
       });
   }
 
+  // Nur beim tatsächlichen Wechsel zu einer neuen Frage (Klick auf "Nächste
+  // Frage") nach oben scrollen - nicht beim Prüfen und nicht bei der
+  // Antwortauswahl. zeigeNaechsteFrage() selbst bleibt ohne Scroll-Aufruf,
+  // da sie auch beim initialen Laden der ersten Frage verwendet wird
+  // (dasselbe Muster wie gehZurueck()/gehWeiterOderAbschliessen() in test.js).
+  function gehZurNaechstenFrage() {
+    zeigeNaechsteFrage();
+    window.scrollTo(0, 0);
+  }
+
   pruefenButton.addEventListener('click', pruefeAntwort);
-  naechsteButton.addEventListener('click', zeigeNaechsteFrage);
+  naechsteButton.addEventListener('click', gehZurNaechstenFrage);
   hauptmenuButton.addEventListener('click', function () {
     // Keine Lernsession zu persistieren - nur bereits geprüfte Antworten
     // wurden als Attempts gespeichert (siehe persistiereUndAktualisiere).

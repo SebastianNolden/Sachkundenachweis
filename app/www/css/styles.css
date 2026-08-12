@@ -409,18 +409,66 @@ body {
   line-height: 1.4;
 }
 
-.falsche-frage-antwort {
-  margin: 0 0 4px;
-  font-size: 0.92rem;
+/* Jede Antwortgruppe ("Meine Antwort" / "Richtige Antwort") zeigt ihre
+   Einträge als eigene Zeilen (keine kommagetrennte/zusammengeklebte
+   Fließtext-Liste) - bleibt dadurch auch bei mehreren Multiple-Choice-
+   Antworten auf schmalen Bildschirmen sauber lesbar. */
+.falsche-frage-antwortgruppe {
+  margin: 0 0 12px;
 }
 
-.falsche-frage-antwort--gewaehlt {
+.falsche-frage-antwortgruppe:last-child {
+  margin-bottom: 0;
+}
+
+.falsche-frage-antwortgruppe-titel {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.falsche-frage-antwortgruppe--gewaehlt .falsche-frage-antwortgruppe-titel {
   color: var(--color-wrong);
 }
 
-.falsche-frage-antwort--korrekt {
+.falsche-frage-antwortgruppe--korrekt .falsche-frage-antwortgruppe-titel {
   color: var(--color-correct);
-  margin-bottom: 0;
+}
+
+.falsche-frage-antwortliste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.falsche-frage-antwortliste li {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  word-break: break-word;
+}
+
+.falsche-frage-antwortgruppe--gewaehlt .falsche-frage-antwortliste li {
+  background: var(--color-wrong-bg);
+  color: var(--color-wrong);
+}
+
+.falsche-frage-antwortgruppe--korrekt .falsche-frage-antwortliste li {
+  background: var(--color-correct-bg);
+  color: var(--color-correct);
+}
+
+.falsche-frage-keine-auswahl {
+  margin: 0;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--color-muted);
 }
 
 /* -------------------------------------------------------------------------
@@ -460,6 +508,11 @@ body {
   padding: 10px 4px;
   border-radius: var(--radius-sm);
   background: var(--color-surface-alt);
+  /* Grid-Items haben einen impliziten min-width:auto (= Breite des
+     längsten unteilbaren Worts, z. B. "ANGEFANGEN"/"FESTIGUNG"). Das
+     zwingt sonst alle 5 gleich breiten (1fr-)Spalten über die verfügbare
+     Kartenbreite hinaus, sichtbar u. a. am rechten Rand bei "Neu". */
+  min-width: 0;
 }
 
 .lernstatus-wert {
@@ -472,6 +525,10 @@ body {
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  /* Erlaubt den längeren Status-Wörtern ("angefangen", "festigung", ...),
+     bei Bedarf innerhalb ihrer schmalen Spalte umzubrechen, statt über den
+     Rand hinauszulaufen. */
+  overflow-wrap: break-word;
 }
 
 .lernstatus-eintrag--gelernt .lernstatus-wert {
@@ -650,40 +707,6 @@ body {
   display: none;
 }
 
-.feedback-bereich {
-  padding: 14px 16px;
-  border-radius: var(--radius-sm);
-  margin: 4px 0;
-}
-
-.feedback-bereich--richtig {
-  background: var(--color-correct-bg);
-}
-
-.feedback-bereich--falsch {
-  background: var(--color-wrong-bg);
-}
-
-.feedback-text {
-  margin: 0;
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.feedback-bereich--richtig .feedback-text {
-  color: var(--color-correct);
-}
-
-.feedback-bereich--falsch .feedback-text {
-  color: var(--color-wrong);
-}
-
-.feedback-korrekte-antworten {
-  margin: 8px 0 0;
-  font-size: 0.9rem;
-  color: var(--color-text);
-}
-
 /* Nach dem Prüfen: Antwortkarten farblich auswerten (siehe learn.js) und
    nicht mehr interaktiv. Höhere Spezifität über die #antworten-form-ID,
    damit dies zuverlässig die bestehenden Auswahl-Regeln (:has(input:checked))
@@ -710,4 +733,32 @@ body {
 
 .antwort-option:has(input:disabled) {
   cursor: default;
+}
+
+/* -------------------------------------------------------------------------
+   7. Floating "Nach oben"-Button (Fortschrittsseite) - kleiner, nicht
+   dauerhaft störender Button unten rechts, nutzt ausschließlich bestehende
+   Farb-Variablen (--color-primary).
+   ------------------------------------------------------------------------- */
+
+.nach-oben-button {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-size: 1.3rem;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nach-oben-button:active {
+  opacity: 0.85;
 }

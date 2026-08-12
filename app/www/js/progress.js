@@ -20,6 +20,12 @@
   var kategorienListeEl = document.getElementById('kategorien-liste');
   var fragenListeEl = document.getElementById('fragen-liste');
   var hauptmenuButton = document.getElementById('progress-hauptmenu-button');
+  var hauptmenuButtonObenEl = document.getElementById('progress-hauptmenu-button-oben');
+  var nachObenButton = document.getElementById('nach-oben-button');
+
+  // Ab dieser Scrollposition (in px) gilt "ein sinnvolles Stück nach unten
+  // gescrollt" - der Floating-Button erscheint erst dann.
+  var NACH_OBEN_BUTTON_SCHWELLENWERT = 400;
 
   var STATUS_LABEL = {
     neu: 'neu',
@@ -188,6 +194,10 @@
 
         App.setStatus(statusEl, '');
         render(fragen, gesamt, kategorieFortschritt, fragenFortschritt);
+        // Falls die Seite (z. B. durch den Browser) bereits gescrollt geladen
+        // wird, direkt den passenden Anfangszustand setzen statt auf das
+        // erste scroll-Ereignis zu warten.
+        aktualisiereNachObenButton();
       })
       .catch(function (err) {
         console.error('Fehler beim Laden des Fortschritts:', err);
@@ -201,8 +211,23 @@
       });
   }
 
-  hauptmenuButton.addEventListener('click', function () {
+  function geheZumHauptmenu() {
     App.geheZu(App.SEITEN.menu);
+  }
+
+  // Zeigt den Floating-"Nach oben"-Button erst, sobald ein sinnvolles Stück
+  // gescrollt wurde, und blendet ihn am Seitenanfang wieder aus.
+  function aktualisiereNachObenButton() {
+    var scrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+    nachObenButton.hidden = scrollPosition < NACH_OBEN_BUTTON_SCHWELLENWERT;
+  }
+
+  hauptmenuButton.addEventListener('click', geheZumHauptmenu);
+  hauptmenuButtonObenEl.addEventListener('click', geheZumHauptmenu);
+
+  window.addEventListener('scroll', aktualisiereNachObenButton);
+  nachObenButton.addEventListener('click', function () {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   });
 
   document.addEventListener('DOMContentLoaded', init);
