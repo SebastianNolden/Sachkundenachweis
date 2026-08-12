@@ -12,70 +12,27 @@
   </header>
 
   <main class="app-main">
-    <p id="status" class="status" role="status"></p>
-
-    <!-- Start-Bereich -->
-    <section id="start-view" class="view view-start" hidden>
-      <div class="card start-card">
-        <h2 class="start-heading">Sachkundenachweis-Test</h2>
-        <p class="start-intro">
-          Teste dein Wissen zum Sachkundenachweis mit zufällig ausgewählten
-          Fragen aus dem gesamten Fragenkatalog.
+    <section class="view view--zentriert">
+      <div class="menu-intro">
+        <h2 class="menu-titel">Sachkundenachweis</h2>
+        <p class="menu-beschreibung">
+          Übe für den Sachkundenachweis mit dem Fragenkatalog dieser App.
         </p>
-        <p class="start-explainer">
-          Du beantwortest die Fragen der Reihe nach und kannst dabei jederzeit
-          vor- und zurückblättern. Das Ergebnis siehst du erst am Ende.
-        </p>
-        <div class="start-badge">30 Fragen</div>
-        <button id="start-button" type="button" class="primary-button">Test starten</button>
-      </div>
-    </section>
-
-    <!-- Test-Bereich -->
-    <section id="test-view" class="view view-test" hidden>
-      <div class="fortschritt-leiste" aria-hidden="true">
-        <div id="fortschritt-balken" class="fortschritt-balken"></div>
       </div>
 
-      <div class="card frage-card">
-        <div class="frage-card-kopf">
-          <span id="frage-kategorie" class="frage-kategorie"></span>
-          <span id="frage-zaehler" class="frage-zaehler"></span>
+      <!-- Jeder Menüpunkt ist ein eigener "menu-eintrag"; weitere Funktionen
+           (Lernmodus, Lernfortschritt, Einstellungen, ...) werden hier später
+           als zusätzliche Einträge auf eigenen Seiten ergänzt. -->
+      <div class="menu-liste">
+        <div class="card menu-eintrag">
+          <h3 class="menu-eintrag-titel">Prüfungstest</h3>
+          <p class="menu-eintrag-beschreibung">
+            Ein Testdurchlauf besteht aus 30 zufällig ausgewählten Fragen aus
+            dem gesamten Fragenkatalog. Du kannst dabei jederzeit vor- und
+            zurückblättern; das Ergebnis siehst du am Ende.
+          </p>
+          <button id="start-button" type="button" class="primary-button">Prüfungstest starten</button>
         </div>
-
-        <img id="frage-bild" class="frage-bild" alt="" hidden>
-        <h2 id="frage-text" class="frage-text"></h2>
-
-        <form id="antworten-form" class="antworten-liste"></form>
-      </div>
-
-      <nav class="nav-buttons">
-        <button id="zurueck-button" type="button" class="secondary-button">Zurück</button>
-        <button id="weiter-button" type="button" class="primary-button">Weiter</button>
-      </nav>
-    </section>
-
-    <!-- Ergebnis-Bereich -->
-    <section id="ergebnis-view" class="view view-ergebnis" hidden>
-      <div class="card ergebnis-card">
-        <h2 class="ergebnis-heading">Testergebnis</h2>
-
-        <p id="ergebnis-prozent" class="ergebnis-prozent"></p>
-
-        <div class="ergebnis-stats">
-          <div class="ergebnis-stat ergebnis-stat--richtig">
-            <span id="ergebnis-richtig-wert" class="ergebnis-stat-wert"></span>
-            <span class="ergebnis-stat-label">richtig</span>
-          </div>
-          <div class="ergebnis-stat ergebnis-stat--falsch">
-            <span id="ergebnis-falsch-wert" class="ergebnis-stat-wert"></span>
-            <span class="ergebnis-stat-label">falsch</span>
-          </div>
-        </div>
-
-        <p id="ergebnis-details" class="ergebnis-details"></p>
-
-        <button id="neuer-test-button" type="button" class="primary-button">Neuen Test starten</button>
       </div>
     </section>
   </main>

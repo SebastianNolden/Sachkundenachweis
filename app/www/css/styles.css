@@ -69,13 +69,21 @@ body {
 }
 
 /* -------------------------------------------------------------------------
-   Gemeinsame Bausteine: Views (Start / Test / Ergebnis) und Karten
+   Gemeinsame Bausteine: Seiten-Layout (Menü / Test / Ergebnis) und Karten
    ------------------------------------------------------------------------- */
 
 .view {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* Zentrierte Variante für Seiten mit kurzem, in sich geschlossenem Inhalt
+   (Menü, Ergebnis) - wächst normal mit, sobald der Inhalt (z. B. eine lange
+   Liste falsch beantworteter Fragen) die Mindesthöhe übersteigt. */
+.view--zentriert {
+  justify-content: center;
+  min-height: calc(100vh - 140px);
 }
 
 .card {
@@ -122,45 +130,41 @@ body {
 }
 
 /* -------------------------------------------------------------------------
-   1. Start-Bereich - eigenständige Startkarte, zentriert, wenig Ablenkung
+   1. Hauptmenü - zentraler Einstiegspunkt, Liste aus Menüpunkten
    ------------------------------------------------------------------------- */
 
-.view-start {
-  justify-content: center;
-  min-height: calc(100vh - 140px);
-}
-
-.start-card {
+.menu-intro {
   text-align: center;
 }
 
-.start-heading {
-  margin: 4px 0 16px;
-  font-size: 1.4rem;
+.menu-titel {
+  margin: 4px 0 8px;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
-.start-intro {
-  margin: 0 0 12px;
-  font-size: 1.05rem;
+.menu-beschreibung {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 1rem;
 }
 
-.start-explainer {
-  margin: 0 0 20px;
+.menu-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-eintrag-titel {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.menu-eintrag-beschreibung {
+  margin: 0 0 18px;
   color: var(--color-muted);
   font-size: 0.95rem;
-}
-
-.start-badge {
-  display: inline-block;
-  margin: 0 0 24px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: var(--color-primary-tint);
-  color: var(--color-primary);
-  font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
 }
 
 /* -------------------------------------------------------------------------
@@ -301,11 +305,6 @@ body {
    3. Ergebnis-Bereich - Abschlusskarte mit Prozent und richtig/falsch
    ------------------------------------------------------------------------- */
 
-.view-ergebnis {
-  justify-content: center;
-  min-height: calc(100vh - 140px);
-}
-
 .ergebnis-card {
   text-align: center;
 }
@@ -369,4 +368,57 @@ body {
   margin: 0 0 24px;
   color: var(--color-muted);
   font-size: 0.95rem;
+}
+
+.ergebnis-aktionen {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* -------------------------------------------------------------------------
+   4. Ergebnis-Bereich - Liste der falsch beantworteten Fragen
+   ------------------------------------------------------------------------- */
+
+.falsche-fragen-sektion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.falsche-fragen-titel {
+  margin: 4px 0 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.falsche-fragen-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.falsche-frage-karte .frage-bild {
+  margin-bottom: 12px;
+}
+
+.falsche-frage-text {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.falsche-frage-antwort {
+  margin: 0 0 4px;
+  font-size: 0.92rem;
+}
+
+.falsche-frage-antwort--gewaehlt {
+  color: var(--color-wrong);
+}
+
+.falsche-frage-antwort--korrekt {
+  color: var(--color-correct);
+  margin-bottom: 0;
 }

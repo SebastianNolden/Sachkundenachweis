@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ergebnis – Sachkundenachweis</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Sachkundenachweis</h1>
+  </header>
+
+  <main class="app-main">
+    <!-- Bleibt hidden, bis ein gültiges Testergebnis aus sessionStorage
+         gelesen wurde - sonst Redirect zum Hauptmenü statt leerer Ansicht. -->
+    <section id="result-content" class="view view--zentriert" hidden>
+      <div class="card ergebnis-card">
+        <h2 class="ergebnis-heading">Testergebnis</h2>
+
+        <p id="ergebnis-prozent" class="ergebnis-prozent"></p>
+
+        <div class="ergebnis-stats">
+          <div class="ergebnis-stat ergebnis-stat--richtig">
+            <span id="ergebnis-richtig-wert" class="ergebnis-stat-wert"></span>
+            <span class="ergebnis-stat-label">richtig</span>
+          </div>
+          <div class="ergebnis-stat ergebnis-stat--falsch">
+            <span id="ergebnis-falsch-wert" class="ergebnis-stat-wert"></span>
+            <span class="ergebnis-stat-label">falsch</span>
+          </div>
+        </div>
+
+        <p id="ergebnis-details" class="ergebnis-details"></p>
+
+        <div class="ergebnis-aktionen">
+          <button id="neuer-test-button" type="button" class="primary-button">Neuen Test starten</button>
+          <button id="hauptmenu-button" type="button" class="secondary-button">Hauptmenü</button>
+        </div>
+      </div>
+
+      <section id="falsche-fragen-sektion" class="falsche-fragen-sektion" hidden>
+        <h3 class="falsche-fragen-titel">Falsch beantwortete Fragen</h3>
+        <div id="falsche-fragen-liste" class="falsche-fragen-liste"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/app.js" defer></script>
+  <script src="js/result.js" defer></script>
+</body>
+</html>
