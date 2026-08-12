@@ -1,0 +1,1188 @@
+{
+  "schemaVersion": "1",
+  "naechsteFreieLaufnummer": 198,
+  "eintraege": [
+    {
+      "id": "q-0001",
+      "kategorieKennung": "1",
+      "nummer": 6,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0002",
+      "kategorieKennung": "1",
+      "nummer": 16,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0003",
+      "kategorieKennung": "1",
+      "nummer": 26,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0004",
+      "kategorieKennung": "1",
+      "nummer": 46,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0005",
+      "kategorieKennung": "1",
+      "nummer": 56,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0006",
+      "kategorieKennung": "1",
+      "nummer": 65,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0007",
+      "kategorieKennung": "1",
+      "nummer": 75,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0008",
+      "kategorieKennung": "2",
+      "nummer": 1,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0009",
+      "kategorieKennung": "2",
+      "nummer": 31,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0010",
+      "kategorieKennung": "2",
+      "nummer": 41,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0011",
+      "kategorieKennung": "2",
+      "nummer": 51,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0012",
+      "kategorieKennung": "2",
+      "nummer": 61,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0013",
+      "kategorieKennung": "2",
+      "nummer": 86,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0014",
+      "kategorieKennung": "2",
+      "nummer": 88,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0015",
+      "kategorieKennung": "2",
+      "nummer": 121,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0016",
+      "kategorieKennung": "2",
+      "nummer": 126,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0017",
+      "kategorieKennung": "2",
+      "nummer": 167,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0018",
+      "kategorieKennung": "3",
+      "nummer": 2,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0019",
+      "kategorieKennung": "3",
+      "nummer": 12,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0020",
+      "kategorieKennung": "3",
+      "nummer": 161,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0021",
+      "kategorieKennung": "3",
+      "nummer": 171,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0022",
+      "kategorieKennung": "3",
+      "nummer": 184,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0023",
+      "kategorieKennung": "3",
+      "nummer": 185,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0024",
+      "kategorieKennung": "3",
+      "nummer": 186,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0025",
+      "kategorieKennung": "3",
+      "nummer": 187,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0026",
+      "kategorieKennung": "3",
+      "nummer": 196,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0027",
+      "kategorieKennung": "3",
+      "nummer": 197,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0028",
+      "kategorieKennung": "4",
+      "nummer": 3,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0029",
+      "kategorieKennung": "4",
+      "nummer": 28,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0030",
+      "kategorieKennung": "4",
+      "nummer": 33,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0031",
+      "kategorieKennung": "4",
+      "nummer": 38,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0032",
+      "kategorieKennung": "4",
+      "nummer": 43,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0033",
+      "kategorieKennung": "4",
+      "nummer": 48,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0034",
+      "kategorieKennung": "4",
+      "nummer": 58,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0035",
+      "kategorieKennung": "4",
+      "nummer": 107,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0036",
+      "kategorieKennung": "4",
+      "nummer": 110,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0037",
+      "kategorieKennung": "4",
+      "nummer": 112,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0038",
+      "kategorieKennung": "5",
+      "nummer": 18,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0039",
+      "kategorieKennung": "5",
+      "nummer": 62,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0040",
+      "kategorieKennung": "5",
+      "nummer": 76,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0041",
+      "kategorieKennung": "5",
+      "nummer": 78,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0042",
+      "kategorieKennung": "5",
+      "nummer": 89,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0043",
+      "kategorieKennung": "5",
+      "nummer": 91,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0044",
+      "kategorieKennung": "5",
+      "nummer": 96,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0045",
+      "kategorieKennung": "5",
+      "nummer": 131,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0046",
+      "kategorieKennung": "5",
+      "nummer": 157,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0047",
+      "kategorieKennung": "5",
+      "nummer": 159,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0048",
+      "kategorieKennung": "6",
+      "nummer": 70,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0049",
+      "kategorieKennung": "6",
+      "nummer": 134,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0050",
+      "kategorieKennung": "6",
+      "nummer": 136,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0051",
+      "kategorieKennung": "6",
+      "nummer": 141,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0052",
+      "kategorieKennung": "6",
+      "nummer": 143,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0053",
+      "kategorieKennung": "6",
+      "nummer": 147,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0054",
+      "kategorieKennung": "6",
+      "nummer": 162,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0055",
+      "kategorieKennung": "6",
+      "nummer": 164,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0056",
+      "kategorieKennung": "6",
+      "nummer": 165,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0057",
+      "kategorieKennung": "6",
+      "nummer": 166,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0058",
+      "kategorieKennung": "7",
+      "nummer": 5,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0059",
+      "kategorieKennung": "7",
+      "nummer": 9,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0060",
+      "kategorieKennung": "7",
+      "nummer": 59,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0061",
+      "kategorieKennung": "7",
+      "nummer": 99,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0062",
+      "kategorieKennung": "7",
+      "nummer": 129,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0063",
+      "kategorieKennung": "7",
+      "nummer": 138,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0064",
+      "kategorieKennung": "7",
+      "nummer": 145,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0065",
+      "kategorieKennung": "7",
+      "nummer": 149,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0066",
+      "kategorieKennung": "7",
+      "nummer": 150,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0067",
+      "kategorieKennung": "7",
+      "nummer": 192,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0068",
+      "kategorieKennung": "8",
+      "nummer": 17,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0069",
+      "kategorieKennung": "8",
+      "nummer": 22,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0070",
+      "kategorieKennung": "8",
+      "nummer": 27,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0071",
+      "kategorieKennung": "8",
+      "nummer": 45,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0072",
+      "kategorieKennung": "8",
+      "nummer": 47,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0073",
+      "kategorieKennung": "8",
+      "nummer": 49,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0074",
+      "kategorieKennung": "8",
+      "nummer": 52,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0075",
+      "kategorieKennung": "8",
+      "nummer": 54,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0076",
+      "kategorieKennung": "8",
+      "nummer": 57,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0077",
+      "kategorieKennung": "8",
+      "nummer": 173,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0078",
+      "kategorieKennung": "9",
+      "nummer": 8,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0079",
+      "kategorieKennung": "9",
+      "nummer": 11,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0080",
+      "kategorieKennung": "9",
+      "nummer": 13,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0081",
+      "kategorieKennung": "9",
+      "nummer": 25,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0082",
+      "kategorieKennung": "9",
+      "nummer": 80,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0083",
+      "kategorieKennung": "9",
+      "nummer": 93,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0084",
+      "kategorieKennung": "9",
+      "nummer": 98,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0085",
+      "kategorieKennung": "9",
+      "nummer": 109,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0086",
+      "kategorieKennung": "9",
+      "nummer": 122,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0087",
+      "kategorieKennung": "9",
+      "nummer": 139,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0088",
+      "kategorieKennung": "10",
+      "nummer": 4,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0089",
+      "kategorieKennung": "10",
+      "nummer": 14,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0090",
+      "kategorieKennung": "10",
+      "nummer": 19,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0091",
+      "kategorieKennung": "10",
+      "nummer": 29,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0092",
+      "kategorieKennung": "10",
+      "nummer": 34,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0093",
+      "kategorieKennung": "10",
+      "nummer": 39,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0094",
+      "kategorieKennung": "10",
+      "nummer": 44,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0095",
+      "kategorieKennung": "10",
+      "nummer": 63,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0096",
+      "kategorieKennung": "10",
+      "nummer": 68,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0097",
+      "kategorieKennung": "10",
+      "nummer": 73,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0098",
+      "kategorieKennung": "11",
+      "nummer": 7,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0099",
+      "kategorieKennung": "11",
+      "nummer": 10,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0100",
+      "kategorieKennung": "11",
+      "nummer": 15,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0101",
+      "kategorieKennung": "11",
+      "nummer": 20,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0102",
+      "kategorieKennung": "11",
+      "nummer": 36,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0103",
+      "kategorieKennung": "11",
+      "nummer": 84,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0104",
+      "kategorieKennung": "11",
+      "nummer": 87,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0105",
+      "kategorieKennung": "11",
+      "nummer": 90,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0106",
+      "kategorieKennung": "11",
+      "nummer": 100,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0107",
+      "kategorieKennung": "11",
+      "nummer": 168,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0108",
+      "kategorieKennung": "12",
+      "nummer": 21,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0109",
+      "kategorieKennung": "12",
+      "nummer": 24,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0110",
+      "kategorieKennung": "12",
+      "nummer": 67,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0111",
+      "kategorieKennung": "12",
+      "nummer": 72,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0112",
+      "kategorieKennung": "12",
+      "nummer": 82,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0113",
+      "kategorieKennung": "12",
+      "nummer": 103,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0114",
+      "kategorieKennung": "12",
+      "nummer": 114,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0115",
+      "kategorieKennung": "12",
+      "nummer": 119,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0116",
+      "kategorieKennung": "12",
+      "nummer": 123,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0117",
+      "kategorieKennung": "12",
+      "nummer": 151,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0118",
+      "kategorieKennung": "13",
+      "nummer": 85,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0119",
+      "kategorieKennung": "13",
+      "nummer": 117,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0120",
+      "kategorieKennung": "13",
+      "nummer": 132,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0121",
+      "kategorieKennung": "13",
+      "nummer": 153,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0122",
+      "kategorieKennung": "13",
+      "nummer": 155,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0123",
+      "kategorieKennung": "13",
+      "nummer": 169,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0124",
+      "kategorieKennung": "13",
+      "nummer": 172,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0125",
+      "kategorieKennung": "13",
+      "nummer": 190,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0126",
+      "kategorieKennung": "13",
+      "nummer": 193,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0127",
+      "kategorieKennung": "13",
+      "nummer": 195,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0128",
+      "kategorieKennung": "14",
+      "nummer": 23,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0129",
+      "kategorieKennung": "14",
+      "nummer": 71,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0130",
+      "kategorieKennung": "14",
+      "nummer": 77,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0131",
+      "kategorieKennung": "14",
+      "nummer": 81,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0132",
+      "kategorieKennung": "14",
+      "nummer": 92,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0133",
+      "kategorieKennung": "14",
+      "nummer": 125,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0134",
+      "kategorieKennung": "14",
+      "nummer": 160,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0135",
+      "kategorieKennung": "14",
+      "nummer": 163,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0136",
+      "kategorieKennung": "14",
+      "nummer": 170,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0137",
+      "kategorieKennung": "14",
+      "nummer": 188,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0138",
+      "kategorieKennung": "15",
+      "nummer": 30,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0139",
+      "kategorieKennung": "15",
+      "nummer": 35,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0140",
+      "kategorieKennung": "15",
+      "nummer": 50,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0141",
+      "kategorieKennung": "15",
+      "nummer": 60,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0142",
+      "kategorieKennung": "15",
+      "nummer": 69,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0143",
+      "kategorieKennung": "15",
+      "nummer": 74,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0144",
+      "kategorieKennung": "15",
+      "nummer": 79,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0145",
+      "kategorieKennung": "15",
+      "nummer": 174,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0146",
+      "kategorieKennung": "15",
+      "nummer": 182,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0147",
+      "kategorieKennung": "15",
+      "nummer": 194,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0148",
+      "kategorieKennung": "16",
+      "nummer": 32,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0149",
+      "kategorieKennung": "16",
+      "nummer": 37,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0150",
+      "kategorieKennung": "16",
+      "nummer": 42,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0151",
+      "kategorieKennung": "16",
+      "nummer": 55,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0152",
+      "kategorieKennung": "16",
+      "nummer": 64,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0153",
+      "kategorieKennung": "16",
+      "nummer": 66,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0154",
+      "kategorieKennung": "16",
+      "nummer": 83,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0155",
+      "kategorieKennung": "16",
+      "nummer": 101,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0156",
+      "kategorieKennung": "16",
+      "nummer": 120,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0157",
+      "kategorieKennung": "16",
+      "nummer": 175,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0158",
+      "kategorieKennung": "17",
+      "nummer": 94,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0159",
+      "kategorieKennung": "17",
+      "nummer": 97,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0160",
+      "kategorieKennung": "17",
+      "nummer": 105,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0161",
+      "kategorieKennung": "17",
+      "nummer": 127,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0162",
+      "kategorieKennung": "17",
+      "nummer": 130,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0163",
+      "kategorieKennung": "17",
+      "nummer": 140,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0164",
+      "kategorieKennung": "17",
+      "nummer": 158,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0165",
+      "kategorieKennung": "17",
+      "nummer": 178,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0166",
+      "kategorieKennung": "17",
+      "nummer": 179,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0167",
+      "kategorieKennung": "17",
+      "nummer": 183,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0168",
+      "kategorieKennung": "18",
+      "nummer": 113,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0169",
+      "kategorieKennung": "18",
+      "nummer": 115,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0170",
+      "kategorieKennung": "18",
+      "nummer": 118,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0171",
+      "kategorieKennung": "18",
+      "nummer": 124,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0172",
+      "kategorieKennung": "18",
+      "nummer": 133,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0173",
+      "kategorieKennung": "18",
+      "nummer": 135,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0174",
+      "kategorieKennung": "18",
+      "nummer": 137,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0175",
+      "kategorieKennung": "18",
+      "nummer": 148,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0176",
+      "kategorieKennung": "18",
+      "nummer": 177,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0177",
+      "kategorieKennung": "18",
+      "nummer": 189,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0178",
+      "kategorieKennung": "19",
+      "nummer": 40,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0179",
+      "kategorieKennung": "19",
+      "nummer": 142,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0180",
+      "kategorieKennung": "19",
+      "nummer": 144,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0181",
+      "kategorieKennung": "19",
+      "nummer": 146,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0182",
+      "kategorieKennung": "19",
+      "nummer": 152,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0183",
+      "kategorieKennung": "19",
+      "nummer": 154,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0184",
+      "kategorieKennung": "19",
+      "nummer": 156,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0185",
+      "kategorieKennung": "19",
+      "nummer": 176,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0186",
+      "kategorieKennung": "19",
+      "nummer": 180,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0187",
+      "kategorieKennung": "19",
+      "nummer": 181,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0188",
+      "kategorieKennung": "20",
+      "nummer": 53,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0189",
+      "kategorieKennung": "20",
+      "nummer": 95,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0190",
+      "kategorieKennung": "20",
+      "nummer": 102,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0191",
+      "kategorieKennung": "20",
+      "nummer": 104,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0192",
+      "kategorieKennung": "20",
+      "nummer": 106,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0193",
+      "kategorieKennung": "20",
+      "nummer": 108,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0194",
+      "kategorieKennung": "20",
+      "nummer": 111,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0195",
+      "kategorieKennung": "20",
+      "nummer": 116,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0196",
+      "kategorieKennung": "20",
+      "nummer": 128,
+      "status": "aktiv"
+    },
+    {
+      "id": "q-0197",
+      "kategorieKennung": "20",
+      "nummer": 191,
+      "status": "aktiv"
+    }
+  ]
+}

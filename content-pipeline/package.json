@@ -1,0 +1,13 @@
+{
+  "name": "sachkundenachweis-content-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Eigenstaendige CSV-zu-content.json-Pipeline fuer die Sachkundenachweis Mobile-App. Keine Abhaengigkeit zur WPF-Codebasis.",
+  "scripts": {
+    "build": "node build-content.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
