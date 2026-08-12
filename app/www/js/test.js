@@ -16,12 +16,19 @@
   // --- Statische Lerninhalte (aus content.json, unverändert) ---------------
   var alleFragen = null;
 
-  // --- Test-Session: lebt ausschließlich im Speicher, keine Persistenz -----
+  // --- Test-Session: lebt im Speicher, wird zusätzlich in SQLite persistiert -
   // {
   //   fragen: Frage[]                      - die 30 fuer diesen Durchlauf gezogenen Fragen
   //   index: number                        - aktuelle Position (0-basiert)
   //   antworten: Map<string, Set<string>>  - Frage-ID -> gewaehlte Antwort-Kennungen
+  //   testSessionId: number|null           - ID der test_sessions-Zeile in SQLite (null, solange
+  //                                          das Anlegen noch aussteht oder fehlgeschlagen ist)
+  //   sessionBereit: Promise<number|null>  - wird aufgelöst, sobald testSessionId feststeht
+  //                                          (oder null bei Fehler) - siehe schliesseTestAb
   // }
+  // Die Ergebnisanzeige (result.html) hängt weiterhin ausschließlich von
+  // sessionStorage ab (siehe schliesseTestAb) - SQLite ist zusätzliche
+  // Persistenz, keine Voraussetzung für die bestehende Testfunktionalität.
   var session = null;
 
   // Zieht TEST_LAENGE zufällige, garantiert unterschiedliche Fragen aus dem
@@ -36,13 +43,32 @@
     // Ergebnis eines früheren Durchlaufs darf ab jetzt nicht mehr gültig sein.
     sessionStorage.removeItem(App.ERGEBNIS_STORAGE_KEY);
 
-    session = {
+    var neueSession = {
       fragen: zieheZufaelligeFragen(),
       index: 0,
       antworten: new Map(),
+      testSessionId: null,
     };
+    session = neueSession;
     renderAktuelleFrage();
     testContentEl.hidden = false;
+
+    // Legt die test_session in SQLite an - läuft im Hintergrund und darf den
+    // bereits sichtbaren Testablauf nicht verzögern oder blockieren.
+    // schliesseTestAb() wartet bei Bedarf auf "sessionBereit", damit ein sehr
+    // schneller Testdurchlauf nicht knapp vor Abschluss der Anlage die
+    // Persistenz verpasst. Schlägt das Anlegen fehl (z. B. SQLite nicht
+    // verfügbar), löst sessionBereit mit null auf: der Test funktioniert
+    // unverändert weiter, es wird beim Abschluss lediglich nichts persistiert.
+    neueSession.sessionBereit = PruefungsPersistenz.starteSession()
+      .then(function (testSessionId) {
+        neueSession.testSessionId = testSessionId;
+        return testSessionId;
+      })
+      .catch(function (err) {
+        console.error('Konnte Test-Session nicht in SQLite anlegen:', err);
+        return null;
+      });
   }
 
   function ausgewaehlteKennungen() {
@@ -163,7 +189,14 @@
   // für die spätere Anzeige falsch beantworteter Fragen), legt es als
   // technische Brücke in sessionStorage ab und navigiert zu result.html.
   // Die Fragen selbst werden nicht dauerhaft gespeichert.
-  function schliesseTestAb() {
+  //
+  // Zusätzlich wird der Testdurchlauf in SQLite persistiert (test_sessions +
+  // question_attempts, siehe PruefungsPersistenz). Das Ergebnis in
+  // sessionStorage bleibt dabei die alleinige Quelle für result.html - die
+  // SQLite-Persistenz ist rein zusätzlich und darf die Anzeige des gerade
+  // abgeschlossenen Tests nicht verzögern oder verhindern, daher der
+  // try/catch statt einer Fehlerweitergabe an den Aufrufer.
+  async function schliesseTestAb() {
     var richtig = 0;
 
     var fragenErgebnis = session.fragen.map(function (frage) {
@@ -203,30 +236,38 @@
     };
 
     sessionStorage.setItem(App.ERGEBNIS_STORAGE_KEY, JSON.stringify(ergebnis));
+
+    // testSessionId steht bei einem sehr schnellen Testdurchlauf ggf. noch
+    // nicht fest - dann auf die (bereits fehlerbehandelte) sessionBereit-
+    // Zusage aus starteNeuenTest() warten, statt die Persistenz zu verpassen.
+    var testSessionId = session.testSessionId || (session.sessionBereit && (await session.sessionBereit));
+
+    if (testSessionId) {
+      try {
+        await PruefungsPersistenz.schliesseTestAb(testSessionId, fragenErgebnis, ergebnis);
+      } catch (err) {
+        console.error('Konnte Testergebnis nicht in SQLite persistieren:', err);
+      }
+    }
+    // Kein testSessionId vorhanden (z. B. weil SQLite beim Teststart nicht
+    // verfügbar war) - bewusst kein Fehler, die Anzeige des Ergebnisses hängt
+    // nicht von SQLite ab (siehe Kommentar oben).
+
     App.geheZu(App.SEITEN.result);
   }
 
   function init() {
     App.setStatus(statusEl, 'Lade Fragen …');
 
-    fetch('content.json')
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error('Server antwortete mit Status ' + response.status);
-        }
-        return response.json();
-      })
-      .then(function (content) {
-        if (!content || !Array.isArray(content.fragen) || content.fragen.length === 0) {
-          throw new Error('content.json enthält keine Fragen.');
-        }
-        if (content.fragen.length < App.TEST_LAENGE) {
+    QuestionRepository.ladeAlle()
+      .then(function (fragen) {
+        if (fragen.length < App.TEST_LAENGE) {
           throw new Error(
-            'content.json enthält nur ' + content.fragen.length + ' Fragen, benötigt werden ' + App.TEST_LAENGE + '.'
+            'content.json enthält nur ' + fragen.length + ' Fragen, benötigt werden ' + App.TEST_LAENGE + '.'
           );
         }
 
-        alleFragen = content.fragen;
+        alleFragen = fragen;
         App.setStatus(statusEl, '');
         starteNeuenTest();
       })
