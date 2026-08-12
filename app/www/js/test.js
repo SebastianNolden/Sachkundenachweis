@@ -24,13 +24,6 @@
   // }
   var session = null;
 
-  // Auswahltyp wird bewusst nicht in content.json gespeichert, sondern hier
-  // aus der Anzahl korrekter Antworten abgeleitet (gleiche Regel wie in der
-  // Content-Pipeline / im fachlichen Datenmodell festgelegt).
-  function istMehrfachauswahl(frage) {
-    return frage.antworten.filter(function (a) { return a.correct; }).length > 1;
-  }
-
   // Zieht TEST_LAENGE zufällige, garantiert unterschiedliche Fragen aus dem
   // gesamten Katalog (Fisher-Yates auf einer Kopie + Ausschnitt - jede Frage
   // kommt in der gemischten Kopie genau einmal vor, daher keine Duplikate).
@@ -82,13 +75,26 @@
       bildEl.src = 'images/' + frage.bild + '.png';
       bildEl.alt = 'Bild zu Frage ' + frage.nummer;
       bildEl.hidden = false;
+      if (!bildEl.parentNode) {
+        textEl.parentNode.insertBefore(bildEl, textEl);
+      }
     } else {
-      // Kein leerer Bildplatzhalter, wenn die Frage kein Bild hat.
+      // Kein Bild vorhanden: das <img>-Element wird komplett aus dem DOM
+      // entfernt statt nur über "hidden" versteckt - so kann kein leerer
+      // Bildplatzhalter sichtbar werden, egal was CSS dazu sagt.
+      if (bildEl.parentNode) {
+        bildEl.parentNode.removeChild(bildEl);
+      }
       bildEl.hidden = true;
       bildEl.removeAttribute('src');
     }
 
-    var inputType = istMehrfachauswahl(frage) ? 'checkbox' : 'radio';
+    // Ob eine Frage intern eine oder mehrere korrekte Antworten hat, ist
+    // ausschließlich für die spätere Auswertung relevant (siehe
+    // korrekteKennungen()) - die Eingabe selbst ist für den Benutzer bei
+    // jeder Frage identisch: immer eine Checkbox, immer 0 bis 4 auswählbar,
+    // damit nicht erkennbar ist, ob eine oder mehrere Antworten korrekt sind.
+    var inputType = 'checkbox';
     var vorherigeAuswahl = session.antworten.get(frage.id) || new Set();
 
     formEl.innerHTML = '';
@@ -97,7 +103,7 @@
       // dadurch trifft ein Klick auf die komplette Antwortkarte immer den
       // Input, nicht nur die kleine Auswahlbox. Rein strukturell/visuell,
       // an Auswahl-Logik/-Auswertung ändert das nichts (weiterhin dasselbe
-      // <input type="radio|checkbox"> mit name/value/checked).
+      // <input type="checkbox"> mit name/value/checked).
       var wrapper = document.createElement('label');
       wrapper.className = 'antwort-option';
 
